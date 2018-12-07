@@ -90,7 +90,7 @@
 	if ( $disconnectdisks == 1 ) {
 		$attacheddisks = ovirt_rest_api_call( 'GET', 'vms/' . $settings['uuid_backup_engine'] . '/diskattachments/' );
 		foreach ( $attacheddisks as $attacheddisk ) {
-			if ( $attacheddisk->logical_name != '/dev/' . $settings['drive_type'] . 'a' ) {
+			if ( $attacheddisk->logical_name != '/dev/' . $settings['drive_type'] . 'b' ) {
 				$attacheddisks = ovirt_rest_api_call( 'DELETE', 'vms/' . $settings['uuid_backup_engine'] . '/diskattachments/' . $attacheddisk['id'] );
 			}
 		}

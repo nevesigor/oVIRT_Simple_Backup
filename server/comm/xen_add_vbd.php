@@ -34,7 +34,7 @@
 
 			//attach disks
 			$diskid     = 50;
-			$diskletter = 'a';
+			$diskletter = 'b';
 			$bootablex  = 1;
 			$disktypeget    = sb_check_disks();
 

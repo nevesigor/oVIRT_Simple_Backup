@@ -25,6 +25,7 @@
 				$disks = ovirt_rest_api_call( 'GET', 'vms/' . $sb_status['setting1'] . '/snapshots/' . $sb_status['setting3'] . '/disks' );
 
 				$diskid       = $disks->disk['id'];
+				$disksize     = $disks->disk->provisioned_size;
 				$extradiskdev = '';//needed any more?
 				$diskletter   = 'b';
 
@@ -106,7 +107,7 @@
 
 									if ( empty( $settings['compress'] ) ) {
 
-										$command = '(pv -n /dev/' . $dev . ' | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=1M conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
+										$command = '(dd iflag=direct bs=16M status=none if=/dev/' . $dev . ' | pv -n -s ' . $disksize . ' | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=16M oflag=direct conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
 
 									} else if ( $settings['compress'] == '1' ) {
 

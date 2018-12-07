@@ -348,7 +348,7 @@
 			if ( strpos( $item, 'mapper' ) == false ) {
 				$item = str_replace( ':', '', $item );
 				$item = str_replace( '/dev/', '', $item );
-				if ( $item != 'vda' && $item != 'sda' ) {
+				if ( $item != 'vda' && $item != 'sda' && $item != 'vdb' && $item != 'sdb' ) {
 					$disks ++;
 					if ( empty( $newbootdisk ) ) {
 						$newbootdisk = $item;
