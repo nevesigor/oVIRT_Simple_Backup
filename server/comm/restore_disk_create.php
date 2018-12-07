@@ -30,7 +30,7 @@
 	if ( $setxen == 1 ) {
 		sb_log('Restoring Xen Images - Migrating Disk Data');
 		//MIGRATE DISK DATA
-		$diskletter = 'a';
+		$diskletter = 'b';
 		$disknumber = 1;
 		$diskarray  = sb_vm_disk_array_fetch( $diskfile );
 		foreach ( $diskarray as $item ) {

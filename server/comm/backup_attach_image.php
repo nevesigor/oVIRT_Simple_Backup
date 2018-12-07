@@ -18,7 +18,7 @@
 
 				$disks        = ovirt_rest_api_call( 'GET', 'vms/' . $sb_status['setting1'] . '/snapshots/' . $sb_status['setting3'] . '/disks' );
 				$diskid       = $disks->disk['id'];
-				$diskletter   = 'a';
+				$diskletter   = 'b';
 				$morediskdata = ovirt_rest_api_call( 'GET', 'vms/' . $sb_status['setting1'] . '/diskattachments/' );
 				$disktypeget  = sb_check_disks();
 				$disktype     = $disktypeget['disktype'];
