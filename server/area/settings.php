@@ -510,6 +510,8 @@
                             array( 'id' => '0', 'name' => 'None', ),
                             array( 'id' => '1', 'name' => 'gzip', ),
                             array( 'id' => '2', 'name' => 'lzo', ),
+                            array( 'id' => '3', 'name' => 'bzip2', ),
+                            array( 'id' => '4', 'name' => 'pbzip2', ),
                         ),
                         'value' => $settings['compress'],
                     ) ),

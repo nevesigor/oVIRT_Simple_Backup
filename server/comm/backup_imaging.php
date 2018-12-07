@@ -106,18 +106,17 @@
 								if ( ! empty( $dev ) ) {
 
 									if ( empty( $settings['compress'] ) ) {
-
 										$command = '(dd iflag=direct bs=16M status=none if=/dev/' . $dev . ' | pv -n -s ' . $disksize . ' | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=16M oflag=direct conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
-
 									} else if ( $settings['compress'] == '1' ) {
-
-										$command = '(pv -n /dev/' . $dev . ' | gzip -c | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img.gz" bs=1M conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
-
+										$command = '(dd iflag=direct bs=16M status=none if=/dev/' . $dev . ' | pv -n -s ' . $disksize . ' | gzip -c | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=16M oflag=direct conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
 									} else if ( $settings['compress'] == '2' ) {
-
-										$command = '(pv -n /dev/' . $dev . ' | lzop --fast -c | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img.lzo" bs=1M conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
-
+										$command = '(dd iflag=direct bs=16M status=none if=/dev/' . $dev . ' | pv -n -s ' . $disksize . ' | lzop --fast -c | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=16M oflag=direct conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
+									} else if ( $settings['compress'] == '3' ) {
+										$command = '(dd iflag=direct bs=16M status=none if=/dev/' . $dev . ' | pv -n -s ' . $disksize . ' | bzip2 -c | dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=16M oflag=direct conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
+									} else if ( $settings['compress'] == '4' ) {
+										$command = '(dd iflag=direct bs=16M status=none if=/dev/' . $dev . ' | pv -n -s ' . $disksize . ' | pbzip2 -c |dd of="' . $settings['mount_backups'] . '/' . $sb_status['setting4'] . '/' . $sb_status['setting1'] . '/' . $sb_status['setting2'] . '/' . $disknumberfile . '.img" bs=16M oflag=direct conv=notrunc,noerror status=none)   > ' . $progressfilename . ' 2>&1 &';//trailing & sends to background
 									}
+
 									$output = null;
 									exec( $command, $output );
 
